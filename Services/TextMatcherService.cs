@@ -4,46 +4,47 @@ using TextMatcher.Application.Abstractions;
 namespace TextMatcher.Infrastructure
 {
     /// <summary>
-    /// Implementation of the text matching service with manual character-by-character comparison
+    /// implementation of the text matching service
     /// </summary>
     public class TextMatcherService : ITextMatcherService
     {
         /// <summary>
-        /// Finds all case-insensitive matches of subtext within text and returns their starting positions
+        /// Finds all case-insensitive matches of subtext within text
         /// </summary>
         /// <param name="text">The main text to search in</param>
         /// <param name="subtext">The subtext to search for</param>
-        /// <returns>List of starting positions (1-based indexing)</returns>
+        /// <returns>List of starting positions</returns>
         public List<int> FindAllMatches(string text, string subtext)
         {
-            var positions = new List<int>();
+            var matchPositions = new List<int>();
             
+            // quick sanity checks
             if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(subtext))
-                return positions;
+                return matchPositions;
 
             if (subtext.Length > text.Length)
-                return positions;
+                return matchPositions;
 
             // Manual character-by-character search
             for (int i = 0; i <= text.Length - subtext.Length; i++)
             {
                 if (IsMatchAtPosition(text, subtext, i))
                 {
-                    // Add 1 to convert from 0-based to 1-based indexing
-                    positions.Add(i + 1);
+                    // +1 because positions are 1-based
+                    matchPositions.Add(i + 1);
                 }
             }
             
-            return positions;
+            return matchPositions;
         }
 
         /// <summary>
-        /// Checks if subtext matches at the specified position in text
+        /// check if subtext matches text starting at this position
         /// </summary>
         /// <param name="text">The main text</param>
         /// <param name="subtext">The subtext to match</param>
         /// <param name="position">The position to check</param>
-        /// <returns>True if there's a match, false otherwise</returns>
+        /// <returns>True if there's a match</returns>
         private bool IsMatchAtPosition(string text, string subtext, int position)
         {
             for (int j = 0; j < subtext.Length; j++)
@@ -57,31 +58,22 @@ namespace TextMatcher.Infrastructure
         }
 
         /// <summary>
-        /// Performs case-insensitive character comparison manually
+        /// Quick manual case-insensitive comparison
         /// </summary>
-        /// <param name="char1">First character</param>
-        /// <param name="char2">Second character</param>
-        /// <returns>True if characters are equal (case-insensitive), false otherwise</returns>
+        /// <param name="char1">first character</param>
+        /// <param name="char2">second character</param>
+        /// <returns>True if characters are equal</returns>
         private bool AreCharactersEqual(char char1, char char2)
         {
-            // Manual case-insensitive comparison
-            char lowerChar1 = ToLower(char1);
-            char lowerChar2 = ToLower(char2);
-            return lowerChar1 == lowerChar2;
+            return ToLower(char1) == ToLower(char2);
         }
 
-        /// <summary>
-        /// Converts a character to lowercase manually using ASCII arithmetic
-        /// </summary>
-        /// <param name="c">Character to convert</param>
-        /// <returns>Lowercase character</returns>
+        // only handles A-Z → a-z (ASCII)
         private char ToLower(char c)
         {
-            // Check if character is uppercase (ASCII 65-90) and convert to lowercase
+            // if character is uppercase and convert to lowercase
             if (c >= 'A' && c <= 'Z')
-            {
                 return (char)(c + 32);
-            }
             return c;
         }
     }

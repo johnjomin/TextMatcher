@@ -12,11 +12,11 @@ namespace TextMatcher.Tests
         public TextMatcherServiceTests()
         {
             _textMatcher = new TextMatcherService();
-            _sampleText = "How much wood would a woodchuck chuck if  a woodchuck could chuck wood?";
+            _sampleText = "How much wood would a Woodchuck chuck, if a Woodchuck could chuck wood?";
         }
 
         [Fact]
-        public void FindAllMatches_How_ReturnsPosition1()
+        public void FindAllMatches_How_ReturnsPosition_1()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "How");
@@ -27,7 +27,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_wood_ReturnsPositions10_23_45_67()
+        public void FindAllMatches_wood_ReturnsPositions_10_23_45_67()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "wood");
@@ -41,7 +41,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_Wood_ReturnsPositions10_23_45_67()
+        public void FindAllMatches_Wood_ReturnsPositions_10_23_45_67()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "Wood");
@@ -55,7 +55,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_oo_ReturnsPositions11_24_46_68()
+        public void FindAllMatches_oo_ReturnsPositions_11_24_46_68()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "oo");
@@ -69,7 +69,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_oO_ReturnsPositions11_24_46_68()
+        public void FindAllMatches_oO_ReturnsPositions_11_24_46_68()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "oO");
@@ -93,7 +93,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_QuestionMark_ReturnsPosition71()
+        public void FindAllMatches_QuestionMark_ReturnsPosition_71()
         {
             // Act
             var result = _textMatcher.FindAllMatches(_sampleText, "?");
@@ -124,7 +124,7 @@ namespace TextMatcher.Tests
         }
 
         [Fact]
-        public void FindAllMatches_EmptyText_ReturnsEmptyList()
+        public void FindAllMatches_EmptyRequirementText_ReturnsEmptyList()
         {
             // Act
             var result = _textMatcher.FindAllMatches("", "wood");
@@ -137,7 +137,7 @@ namespace TextMatcher.Tests
         public void FindAllMatches_SubtextLongerThanText_ReturnsEmptyList()
         {
             // Act
-            var result = _textMatcher.FindAllMatches("short", "very long subtext");
+            var result = _textMatcher.FindAllMatches("goku", "super transformation");
 
             // Assert
             Assert.Empty(result);
@@ -213,7 +213,7 @@ namespace TextMatcher.Tests
         {
             // Arrange
             string text = "hello world";
-            string subtext = "xyz";
+            string subtext = "abc";
 
             // Act
             var result = _textMatcher.FindAllMatches(text, subtext);

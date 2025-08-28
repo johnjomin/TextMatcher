@@ -7,30 +7,24 @@ namespace TextMatcher
     {
         static void Main(string[] args)
         {
-            // Create the text matcher service directly
             ITextMatcherService textMatcher = new TextMatcherService();
             
-            // Sample text from the requirements
-            string sampleText = "How much wood would a woodchuck chuck if  a woodchuck could chuck wood?";
+            // Text from the requirements
+            string requirementText = "How much wood would a Woodchuck chuck, if a Woodchuck could chuck wood?";
             
             // Test cases from the requirements
             string[] subtexts = { "How", "wood", "Wood", "oo", "oO", "wooden", "?", "x" };
             
-            Console.WriteLine("Subtext Positions");
+            Console.WriteLine("Subtext : Positions");
             
-            foreach (string subtext in subtexts)
+            foreach (var sub in subtexts)
             {
-                var positions = textMatcher.FindAllMatches(sampleText, subtext);
-                
+                var positions = textMatcher.FindAllMatches(requirementText, sub);
+                // sure can be converted into one line but this way, better readability :D
                 if (positions.Count == 0)
-                {
-                    Console.WriteLine($"{subtext}");
-                }
+                    Console.WriteLine($"{sub}");
                 else
-                {
-                    string positionsStr = string.Join(",", positions);
-                    Console.WriteLine($"{subtext} {positionsStr}");
-                }
+                    Console.WriteLine($"{sub} : {string.Join(",", positions)}");
             }
         }
     }
