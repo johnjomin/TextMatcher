@@ -7,6 +7,59 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Covers JetBrains IDEs: IntelliJ, Rider, PyCharm, PhpStorm, WebStorm, etc.
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Generated files
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Caches
+.idea/**/caches
+.idea/**/indexes
+.idea/**/assetWizardSettings.xml
+
+# Rider / ReSharper
+.idea/**/modules.xml
+.idea/**/projectSettingsUpdater.xml
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/vcs.xml
+
+# Avoid committing project files
+.idea/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crash logs
+idea.log
+
+# .NET build
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS
+.vs/
+
+
 # User-specific files
 *.rsuser
 *.suo
